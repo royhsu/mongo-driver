@@ -30,6 +30,17 @@ public class MongoDriver: Fluent.Driver {
         let server = try Server("mongodb://\(escapedUser):\(escapedPassword)@\(host):\(port)", automatically: true)
         self.database = server[database]
     }
+    
+    /**
+        Creates a new `MongoDriver` with
+        the given uri.
+     */
+    public init(database: String, uri: String) throws {
+        
+        let server = try Server(uri, automatically: true)
+        self.database = server[database]
+        
+    }
 
     /**
         MongoDB uses `_id` as the main identifier.
